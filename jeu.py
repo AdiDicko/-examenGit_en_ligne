@@ -1,6 +1,13 @@
-#  < !—premiere ligne de jeu - >
-
 import random
+
+def comparer(nombre_secret, choix):
+    if choix < nombre_secret:
+        return "trop petit"
+    elif choix > nombre_secret:
+        return "trop grand"
+    else:
+        return "gagné"
+
 
 def jeu_devine_nombre():
     print("🎯 Bienvenue dans le jeu Devine le Nombre !")
@@ -14,9 +21,11 @@ def jeu_devine_nombre():
             choix = int(input("👉 Entre un nombre : "))
             tentatives += 1
 
-            if choix < nombre_secret:
+            resultat = comparer(nombre_secret, choix)
+
+            if resultat == "trop petit":
                 print("📉 Trop petit !")
-            elif choix > nombre_secret:
+            elif resultat == "trop grand":
                 print("📈 Trop grand !")
             else:
                 print(f"🎉 Bravo ! Tu as trouvé en {tentatives} tentatives.")
@@ -25,5 +34,7 @@ def jeu_devine_nombre():
         except ValueError:
             print("⚠️ Entre un nombre valide !")
 
-# Lancer le jeu
-jeu_devine_nombre()
+
+# IMPORTANT 👇 (bonne pratique)
+if __name__ == "__main__":
+    jeu_devine_nombre()
